@@ -2,8 +2,8 @@
 
 set -e
 
+BASE_IMAGE="$1"
+NIX_VERSION="$2"
 
-for V in "2.3.3" "2.3.4"; do
-  docker build -t "tkachuklabs/nix:$V" -f "./Dockerfile-nix:$V" .
-  docker push "tkachuklabs/nix:$V"
-done
+docker build -t "tkachuklabs/nix-$BASE_IMAGE:$NIX_VERSION" -f "./Dockerfile-nix-$BASE_IMAGE:$NIX_VERSION" .
+#docker push "tkachuklabs/nix-$BASE_IMAGE:$NIX_VERSION"
