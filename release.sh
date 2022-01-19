@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
 BASE_IMAGE="$1"
-NIX_VERSION="$2"
+PLATFORM="$2"
+NIX_VERSION="$3"
 
-docker build -t "tkachuklabs/nix-$BASE_IMAGE:$NIX_VERSION" -f "./Dockerfile-nix-$BASE_IMAGE:$NIX_VERSION" .
-#docker push "tkachuklabs/nix-$BASE_IMAGE:$NIX_VERSION"
+docker buildx build -t "heathmont/nix:$BASE_IMAGE-$PLATFORM-$NIX_VERSION" -f "./Dockerfile-nix-$BASE_IMAGE:$NIX_VERSION" --platform "linux/$PLATFORM" .
